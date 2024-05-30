@@ -1,87 +1,170 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>JS Bin</title>
-    <style>
-        canvas {
-            border: 1px solid gray;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vegetable Master</title>
 </head>
+<style>  
+    
+    #wrap
+    {
+    width:100%;
+    }
+    
+    #header
+    {
+    width:1200px;
+    height:100px;
+    margin:0 auto;
+    }
+    
+    #logo{
+    margin:20px 0 0 0;
+    float:left;
+    }
+    
+    #gnb
+    {
+    float:right;
+    }
+    
+    #gnb > ul > li
+    {
+    float:left;
+    display:inline-block
+    }
+    
+    #gnb > ul > li > a
+    {
+    font-size:20px;
+    color:#666666;
+    font-weight: 500;
+    padding: 0 1px;
+    width:180px;
+    display:inline-block;
+    margin:40px 0;
+    text-decoration: auto;
+    }
+    
+    #gnb > ul > li ~li
+    {
+    position: relative;
+    margin-left: 16px;
+    padding-left: 17px;
+    }
+    
+    #gnb > ul > li ~ Li:after
+    {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 1px;
+    height: 12px;
+    margin-top: 0px;
+    background: #ebebeb;
+    }
+    
+    #body_1
+    {
+    width:100%;
+    margin-left: 300px;
+    margin-top: 120px;
+    float:block;
+    }
+    
+    #contents
+    {
+    width: 100%;
+    height: 650px;
+    }
+    
+    #body_2
+    {
+    width: 300px;
+    margin-left: 300px;
+    margin-top: 60px;
+    float: left;
+    }
+    
+    #body_3
+    {
+    width: 300px;
+    margin-left: 52px;
+    margin-top: 60px;
+    float: left;
+    }
+    
+    #body_4
+    {
+    width: 300px;
+    margin-left: 52px;
+    margin-top: 60px;
+    float: left;
+    }
+    
+    #footer {
+    width : 100%;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 40px;
+    position: absolute;
+    line-height: 15px;
+    letter-spacing: 1px;
+    }
+      
+    #footer p
+    {
+    font-family: 'Gowun Batang', serif;
+    }
+      
+    h6 {font-size: 24px;}
+    
+</style>
 <body>
-    <h1>동그라미 패턴</h1>
-    <img src="avertisement.jpg">
-    <canvas id="myCanvas" width="400" height="400"></canvas>
-    <script>
-        var canvas = document.getElementById("myCanvas");
-        var ctx = canvas.getContext("2d");
+    <div id="wrap">
+        <div id="header">
+            <h1 id="logo">
+                <a href="#"><img src="./image/logo.png"/></a>
+            </h1>
+            <div id="gnb">
+                <ul>
+                     <li><a href="https://ikkii.neocities.org/eggplant.html">EGGPLANT</a></li>
+                    <li><a href="https://emotionhyun.neocities.org">CARROT</a></li>   
+                    <li><a href="https://jimin12.neocities.org">PUMPKIN</a></li>             
+                </ul>
+            </div>
+        </div>
+        <div id="body_1">
+            <img src="./image/body_1.png"/>
+        </div>
+    </div>
+    <div id="contents">
+            <div id="body_2">
+                <a href="https://jimin12.neocities.org"><img src="./image/body_2.png"/></a>
+            </div>
+            <div id="body_3">
+                <a href="https://emotionhyun.neocities.org"><img src="./image/body_3.png"/></a>
+            </div>
+            <div id="body_4">
+                <a href="https://ikkii.neocities.org/eggplant.html"><img src="./image/body_4.png"/></a>
+            </div>
+    </div>
+    <div id="footer">
+		<h6>채소 마스터 클래스</h6>
+		<p><b>저자 백지혜 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 사진 정멜멜 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 출판 세미콜론 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 출간 2022.02.15</b>
+		<br><br>
 
-        // 동그라미 객체
-        class Circle {
-            constructor(x, y, radius, dx, dy) {
-                this.x = x;
-                this.y = y;
-                this.radius = radius;
-                this.dx = dx; // x 방향 속도
-                this.dy = dy; // y 방향 속도
-            }
+		</p><hr style="width: 1020px;;">
 
-            // 동그라미 그리기
-            draw() {
-                var gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
-                gradient.addColorStop(0, '#ff0000'); // 중심 색상: 빨간색
-                gradient.addColorStop(1, '#ffa500'); // 외곽 색상: 주황색
+		<br>
+		<p><b>RECIPE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PHOTO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; E-BOOK &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TWITTER &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INSTAGRAM &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FACEBOOK &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; YOUTUBE</b>
+		<br><br><br>
 
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-                ctx.fillStyle = gradient;
-                ctx.fill();
-            }
-
-            // 동그라미 움직이기
-            move() {
-                this.x += this.dx;
-                this.y += this.dy;
-
-                // 경계 처리
-                if (this.x - this.radius < 0 || this.x + this.radius > canvas.width) {
-                    this.dx = -this.dx;
-                }
-                if (this.y - this.radius < 0 || this.y + this.radius > canvas.height) {
-                    this.dy = -this.dy;
-                }
-            }
-        }
-
-        // 동그라미 배열
-        var circles = [];
-
-        // 동그라미 생성
-        var circleRadius = 20;
-        var circleSpacing = 50;
-
-        for (var y = circleRadius; y < canvas.height; y += circleSpacing) {
-            for (var x = circleRadius; x < canvas.width; x += circleSpacing) {
-                var dx = Math.random() * 4 - 2; // x 방향 속도 (-2 ~ 2)
-                var dy = Math.random() * 4 - 2; // y 방향 속도 (-2 ~ 2)
-                circles.push(new Circle(x, y, circleRadius, dx, dy));
-            }
-        }
-
-        // 애니메이션 함수
-        function animate() {
-            requestAnimationFrame(animate);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            for (var i = 0; i < circles.length; i++) {
-                circles[i].draw();
-                circles[i].move();
-            }
-        }
-
-        animate();
-    </script>
+		</p><p style="color: #BDC3C7;">Digital Programing · 2022- 1 Final Project · 이거4조 저거4조 by.22257005 김경민· mi300278@gmail.com · @m_i_2__<br><br><br><br><br>
+        </p></div>
 </body>
 </html>
